@@ -9,7 +9,7 @@ type
   Node = concept c
     c is NimNode
     # c[] is NimNode
-macro simpleConcepts(body:untyped):untyped=
+macro simpleConcepts*(body:untyped):untyped=
   result = newStmtList()
   for x in body:
     var 
