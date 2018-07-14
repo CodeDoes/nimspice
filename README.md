@@ -1,3 +1,3 @@
-# awsome_nim_macros
+# nimSpice \~\~\~
 
 Bunch of macros. Trying to see what the language is capible of.
