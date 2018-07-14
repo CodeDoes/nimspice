@@ -8,7 +8,7 @@ template `on`(xpr: typed, cond: untyped, onvalid: untyped): untyped =
       onvalid
   value
 template onError(xpr: typed, errBody: untyped): untyped =
-  xpr.on _!=0:
+  xpr.on _ != 0:
     errBody
 var 
   val = 
@@ -19,8 +19,8 @@ var
 doAssert:
   val == 22222
 doAssert:
-  (;1.onError:
+  (;1 onError:
     echo "caught the error"
-    )==1
+    ) == 1
 
 
