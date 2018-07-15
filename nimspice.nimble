@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.1.2"
 author        = "CodeDoes"
 description   = "A bunch of macros. sugar if you would"
 license       = "MIT"
