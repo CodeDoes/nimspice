@@ -2,7 +2,7 @@
 import macros
 #TODO when compiles(`=with_open`(var))
 #TODO when compiles(`=with_close`(var))
-macro `with`*(xpr: untyped, exe: untyped): untyped =
+macro `with`*(xpr: untyped, exe: untyped): untyped {.discardable.} =
   result = newStmtList()
   var alias = "_".ident
   var val = xpr
@@ -11,14 +11,18 @@ macro `with`*(xpr: untyped, exe: untyped): untyped =
     assert $xpr[0] == "as"
     alias = xpr[2]
     val = xpr[1]
+  var 
+    innerProc = genSym(nskProc,"inner_proc")
+    r = "result".ident
 
   result.add quote do:
-    var value = `val`
-    template `alias` : untyped {.inject.} = value
+    var val = `val`
+    template `alias` : untyped {.inject.} = val
     # block:
     block:
       `exe`
-    value
+    val
+    
 when isMainModule:
   var
     a = 
@@ -38,3 +42,6 @@ when isMainModule:
       echo "changing n"
       n = 2231
     ) == 2231
+  with 5:
+    assert _ == 5
+    echo "5 ",_
